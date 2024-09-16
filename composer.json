@@ -1,0 +1,32 @@
+{
+    "name": "nswdpc/silverstripe-search-forms",
+    "description": "A collection of search forms for use with search implementations",
+    "type": "silverstripe-vendormodule",
+    "keywords": [
+        "silverstripe",
+        "typesense",
+        "cms",
+        "search"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "James",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "silverstripe/framework" : "^5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "friendsofphp/php-cs-fixer": "^3"
+    },
+    "autoload": {
+        "psr-4": {
+            "NSWDPC\\SearchForms\\": [
+                "src/"
+            ]
+        }
+    }
+}
