@@ -2,10 +2,7 @@
 
 namespace NSWDPC\SearchForms\Forms;
 
-use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Form;
-use SilverStripe\Forms\FormAction;
-use SilverStripe\Forms\TextField;
 
 /**
  * Simple search form
