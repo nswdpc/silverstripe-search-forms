@@ -1,6 +1,6 @@
 <?php
 
-namespace NSWDPC\SearchForms\Forms;
+namespace NSWDPC\Search\Forms;
 
 use SilverStripe\Forms\Form;
 

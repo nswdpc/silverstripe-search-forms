@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "NSWDPC\\SearchForms\\": [
+            "NSWDPC\\Search\\Forms\\": [
                 "src/"
             ]
         }
