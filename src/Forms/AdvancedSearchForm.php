@@ -1,6 +1,6 @@
 <?php
 
-namespace NSWDPC\Search\Forms;
+namespace NSWDPC\Search\Forms\Forms;
 
 /**
  * A base Advanced search form class
