@@ -2,6 +2,7 @@
 
 namespace NSWDPC\Search\Forms\Forms;
 
+use SilverStripe\Control\Controller;
 use SilverStripe\Forms\Form;
 
 /**
@@ -13,7 +14,14 @@ class SearchForm extends Form {
      * Helper method to return the search query value present int the URL
      */
     public function SearchQuery(): string {
-        return (string)$this->getController()->getRequest()->getVar('q');
+        $controller = Controller::curr();
+        $q = $controller->getRequest()->getVar('q');
+        if(!is_scalar($q)) {
+            $q = '';
+        } else {
+            $q = trim(strip_tags($q));
+        }
+        return $q;
     }
 
 }
