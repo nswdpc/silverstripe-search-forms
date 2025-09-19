@@ -16,11 +16,8 @@ class SearchForm extends Form {
     public function SearchQuery(): string {
         $controller = Controller::curr();
         $q = $controller->getRequest()->getVar('q');
-        if(!is_scalar($q)) {
-            $q = '';
-        } else {
-            $q = trim(strip_tags($q));
-        }
+        $q = is_scalar($q) ? trim(strip_tags($q)) : '';
+
         return $q;
     }
 
