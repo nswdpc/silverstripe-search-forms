@@ -15,7 +15,6 @@ use SilverStripe\Forms\DropdownField;
  */
 class SiteSearchChooser extends Extension
 {
-
     private static array $db = [
         // a string provided Id to identify a global site-wide search provider
         'SiteSearchChoice' => 'Varchar(16)'
@@ -27,7 +26,7 @@ class SiteSearchChooser extends Extension
     public function updateCmsFields(&$fields)
     {
         $providers = SiteSearchChoice::getProvidersForSelection();
-        if($providers === []) {
+        if ($providers === []) {
             $fields->removeByName(['SiteSearchChoice']);
         } else {
             $fields->addFieldToTab(

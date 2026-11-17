@@ -19,7 +19,6 @@ use SilverStripe\View\TemplateGlobalProvider;
  */
 class SiteSearchChoice
 {
-
     use Configurable;
 
     // configured global search providers
@@ -35,12 +34,12 @@ class SiteSearchChoice
     public static function getProviders(): array
     {
         $providers = self::config()->get('global_search_providers');
-        if(!is_array($providers)) {
+        if (!is_array($providers)) {
             return [];
         }
         return array_filter(
             $providers,
-            fn($providerClass, $providerId): bool => is_string($providerClass) && class_exists($providerClass) && is_subclass_of($providerClass, TemplateGlobalProvider::class),
+            fn ($providerClass, $providerId): bool => is_string($providerClass) && class_exists($providerClass) && is_subclass_of($providerClass, TemplateGlobalProvider::class),
             ARRAY_FILTER_USE_BOTH
         );
     }
@@ -53,7 +52,7 @@ class SiteSearchChoice
     {
         $providers = self::getProviders();
         $selection = [];
-        foreach($providers as $providerId => $providerClass) {
+        foreach ($providers as $providerId => $providerClass) {
             $label = self::getProviderLabel($providerId);
             $selection[$providerId] = $label !== '' ? $label : $providerClass;
         }
@@ -78,7 +77,7 @@ class SiteSearchChoice
     public static function getProviderLabel(string $providerId): string
     {
         $providerClass = self::getProvider($providerId);
-        if($providerClass !== '') {
+        if ($providerClass !== '') {
             return Config::inst()->get($providerClass, 'global_search_label') ?? '';
         }
 
@@ -91,14 +90,14 @@ class SiteSearchChoice
      */
     public static function getGlobalProvider(): string
     {
-        if(self::$_cache_global_provider !== '') {
+        if (self::$_cache_global_provider !== '') {
             // return if already determined
             return self::$_cache_global_provider;
         }
 
         $config = SiteConfig::current_site_config();
         $chosen = trim($config->SiteSearchChoice ?? '');
-        if($chosen === '') {
+        if ($chosen === '') {
             return '';
         }
         self::$_cache_global_provider = self::getProvider($chosen);
