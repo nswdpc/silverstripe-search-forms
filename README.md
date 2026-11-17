@@ -2,14 +2,11 @@
 
 A collection for search forms for use by search implementations
 
-### Usage
-
-
-## Requirements
-
-
 ## Installation
 
+```sh
+composer require nswdpc/silverstripe-search-forms
+```
 
 ## License
 
@@ -18,9 +15,6 @@ A collection for search forms for use by search implementations
 ## Documentation
 
 * [Documentation](./docs/en/001_index.md)
-
-## Configuration
-
 
 ## Maintainers
 
