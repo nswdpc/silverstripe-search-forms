@@ -16,7 +16,8 @@
         }
     ],
     "require": {
-        "silverstripe/framework" : "^6"
+        "silverstripe/framework": "^6",
+        "silverstripe/siteconfig": "^6"
     },
     "require-dev": {
         "cambis/silverstan": "^2",

@@ -1,3 +1,13 @@
 ---
 Name: nswdpc-search-forms
 ---
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - NSWDPC\Search\Forms\Extensions\SiteSearchChooser
+---
+Name: nswdpc-search-forms-providers
+---
+NSWDPC\Search\Forms\Models\SiteSearchChoice:
+  # modules depending on this module should apply global search classes to this
+  # format is providerId: Some\ProviderClass
+  global_search_providers: []
