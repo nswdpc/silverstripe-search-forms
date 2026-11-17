@@ -37,15 +37,12 @@ class SiteSearchChoice
         $providers = self::config()->get('global_search_providers');
         if(!is_array($providers)) {
             return [];
-        } else {
-            return array_filter(
-                $providers,
-                function($providerClass, $providerId) {
-                    return is_string($providerClass) && class_exists($providerClass) && is_subclass_of($providerClass, TemplateGlobalProvider::class);
-                },
-                ARRAY_FILTER_USE_BOTH
-            );
         }
+        return array_filter(
+            $providers,
+            fn($providerClass, $providerId): bool => is_string($providerClass) && class_exists($providerClass) && is_subclass_of($providerClass, TemplateGlobalProvider::class),
+            ARRAY_FILTER_USE_BOTH
+        );
     }
 
     /**
@@ -60,6 +57,7 @@ class SiteSearchChoice
             $label = self::getProviderLabel($providerId);
             $selection[$providerId] = $label !== '' ? $label : $providerClass;
         }
+
         return $selection;
     }
 
@@ -83,6 +81,7 @@ class SiteSearchChoice
         if($providerClass !== '') {
             return Config::inst()->get($providerClass, 'global_search_label') ?? '';
         }
+
         return '';
     }
 
@@ -96,14 +95,14 @@ class SiteSearchChoice
             // return if already determined
             return self::$_cache_global_provider;
         }
+
         $config = SiteConfig::current_site_config();
         $chosen = trim($config->SiteSearchChoice ?? '');
         if($chosen === '') {
             return '';
-        } else {
-            self::$_cache_global_provider = self::getProvider($chosen);
-            return self::$_cache_global_provider;
         }
+        self::$_cache_global_provider = self::getProvider($chosen);
+        return self::$_cache_global_provider;
     }
 
     /**
@@ -115,14 +114,13 @@ class SiteSearchChoice
     {
         if (Injector::inst()->has(HTTPRequest::class)) {
             $controller->setRequest(Injector::inst()->get(HTTPRequest::class));
-            $form = SearchForm::create(
+            return SearchForm::create(
                 $controller,
                 $name
             )->setFormMethod('GET')
             ->setFormAction($controller->Link())
             ->setAttribute('data-type', Convert::raw2htmlatt($type))
             ->disableSecurityToken();
-            return $form;
         }
 
         return null;

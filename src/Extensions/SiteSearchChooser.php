@@ -10,6 +10,8 @@ use SilverStripe\Forms\DropdownField;
 
 /**
  * Allows a admin to choose a search option for the site
+ * @property ?string $SiteSearchChoice
+ * @extends \SilverStripe\Core\Extension<(\SilverStripe\SiteConfig\SiteConfig & static)>
  */
 class SiteSearchChooser extends Extension
 {
